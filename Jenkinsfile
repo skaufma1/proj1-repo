@@ -13,8 +13,6 @@ pipeline {
                 
                 script {
                     sudo docker build -t 'proj1_flask_image' .
-                    // sudo def dockerImage = docker.build('proj1_flask_image')
-                    // sudo dockerImage.push()
                 }
             }
         }
