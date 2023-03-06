@@ -10,7 +10,10 @@ pipeline {
 	stage('Deploy Flask Container') {
             steps {
                 sh "echo ${params.NAME}"
-                sh "docker build -t proj1_flask_image ."
+                script {
+                    def dockerImage = docker.build('proj1_flask_image')
+                    dockerImage.push()
+                }
             }
         }
     }
