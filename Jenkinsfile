@@ -12,7 +12,7 @@ pipeline {
                 sh "echo ${params.NAME}"
                 
                 script {
-                    sudo docker build -t 'proj1_flask_image' .
+                    sudo 'docker build -t 'proj1_flask_image' .'
                 }
             }
         }
