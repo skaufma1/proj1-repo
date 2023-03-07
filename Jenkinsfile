@@ -15,7 +15,7 @@ pipeline {
 		   		    
                 script {
 //                     docker build -t 'proj1_flask_image' .
-		       /usr/bin/docker.build("proj1_flask_image", "--user=root .")
+		       def dockerImage = docker.build("proj1_flask_image", "--user=root .")
                 }
             }
         }
