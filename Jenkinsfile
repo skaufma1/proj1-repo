@@ -14,10 +14,10 @@ pipeline {
 // 		   sh 'sudo docker build -t proj1_flask_image .'
 		def dockerImage = docker.build("proj1_flask_image", "--user=root .")
 		   		    
-                script {
+//                 script {
 //                     docker build -t 'proj1_flask_image' .
 // 		       def dockerImage = docker.build("proj1_flask_image", "--user=root .")
-                }
+//                 }
             }
         }
     }
