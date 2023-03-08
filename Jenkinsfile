@@ -38,6 +38,9 @@ pipeline {
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://44.200.235.249:5000')
                     println "Response: $response"
+			
+		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
+                    println "Jenkins user: $jenkinsUser"
                 }
             }
         }
