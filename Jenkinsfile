@@ -1,7 +1,7 @@
 pipeline {
     agent {label "slave1"}
     stages {
-	stage('Checkout SCM') {
+	stage('CheckoutSCM') {
 	    steps {
 		 checkout([
 			 $class: 'GitSCM',
