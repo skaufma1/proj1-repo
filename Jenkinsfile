@@ -20,7 +20,7 @@ pipeline {
 //         }
 	stage('Deploy Flask Container') {
             steps {
-                sh "echo ${params.NAME}"
+                sh "echo ${params.Name}"
 //                 sh 'sudo su'
 // 		   sh 'sudo docker build -t proj1_flask_image .'
 				   		    
