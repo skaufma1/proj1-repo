@@ -30,7 +30,14 @@ pipeline {
 // 		       def dockerImage = docker.build("proj1_flask_image", "--user=root .")
 		       sh 'sudo docker build -t proj1_flask_image .'
 // 		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
-// 		       sh 'curl -v http://44.200.235.249:5000'
+                }
+            }
+        }
+	stage('Make HTTP request') {
+            steps {
+                script {
+                    def response = sh(returnStdout: true, script: 'curl -v http://44.200.235.249:5000')
+                    println "Response: $response"
                 }
             }
         }
