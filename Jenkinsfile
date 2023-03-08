@@ -7,17 +7,17 @@ pipeline {
 			 $class: 'GitSCM',
 			 branches: [[name: 'main']],
 			 userRemoteConfigs: [[
-				 url: 'https://github.com/skaufma1/proj1-repo.git',
+				 url: 'git@github.com:skaufma1/proj1-repo.git',
 				 credentialsId: ''
 				 ]]
 			 ])		    
 	    }		
 	}
-        stage('Pull from GitHub') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/skaufma1/proj1-repo.git']])
-            }
-        }
+//         stage('Pull from GitHub') {
+//             steps {
+//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/skaufma1/proj1-repo.git']])
+//             }
+//         }
 	stage('Deploy Flask Container') {
             steps {
                 sh "echo ${params.NAME}"
