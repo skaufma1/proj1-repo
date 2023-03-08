@@ -28,7 +28,7 @@ pipeline {
 //                     docker build -t proj1_flask_image .
 // 		       def dockerImage = docker.build("proj1_flask_image", "--user=root .")
 		       sh 'sudo docker build -t proj1_flask_image .'
-		       sh 'sudo docker run -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image params.Name'
+		       sh 'sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image params.Name'
                 }
             }
         }
