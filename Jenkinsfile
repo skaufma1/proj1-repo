@@ -32,7 +32,7 @@ pipeline {
 			
 // 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
 //                     println "Jenkins user: $jenkinsUser"
-		    def userId = build.getCause(Cause.UserIdCause).getUserId()
+// 		    def userId = build.getCause(Cause.UserIdCause).getUserId()
                 }
             }
         }
