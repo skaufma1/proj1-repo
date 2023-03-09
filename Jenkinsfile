@@ -27,9 +27,10 @@ pipeline {
 	stage('Make HTTP request') {
             steps {
 		    
-		wrap([$class: 'BuildUser']) {
-                    sh 'echo "${BUILD_USER}"'
-                }
+// 		wrap([$class: 'BuildUser']) {
+//                     sh 'echo "${BUILD_USER}"'
+//                 }
+		sh 'echo User.current()'
 		    
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
