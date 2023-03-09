@@ -44,7 +44,8 @@ pipeline {
 // 		    def userId = build.getCause(Cause.UserIdCause).getUserId()
 			
 		    def username = currentBuild.getBuildCauses()[0].getUserName()
-                    echo "The job was triggered by user: ${username}"
+//                     echo "The job was triggered by user: ${username}"
+		    println "The job was triggered by user: $username"
                 }
             }
         }
