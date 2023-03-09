@@ -34,7 +34,7 @@ pipeline {
 		    
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
-		    def full_response = curl -v http://35.153.60.106:5000
+		    def full_response = sh('curl -v http://35.153.60.106:5000')
                     println "Response: $response"
 		    println "Full Response: $full_response"
 		    def substring = response.substring(0, 5)
