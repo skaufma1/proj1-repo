@@ -30,8 +30,9 @@ pipeline {
                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
                     println "Response: $response"
 			
-		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
-                    println "Jenkins user: $jenkinsUser"
+// 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
+//                     println "Jenkins user: $jenkinsUser"
+		    def userId = build.getCause(Cause.UserIdCause).getUserId()
                 }
             }
         }
