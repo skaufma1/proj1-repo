@@ -37,7 +37,7 @@ pipeline {
 		    println "Response: $response"
 			
 // 		    sh 'if grep -q "200 OK" $response; then echo "200 OK"; fi'
-		    sh 'if sed -n \'/Hello,/p\' $response; then echo "Test OK"; else echo "Failure"; fi'
+		    sh 'if sed -n \'/Helo,/p\' $response; then echo "Test OK"; else echo "Failure"; fi'
 		    
 		    def substring = response.substring(0, 5)
 		    println "Substring: $substring"
