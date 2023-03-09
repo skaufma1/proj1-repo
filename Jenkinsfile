@@ -47,13 +47,8 @@ pipeline {
 //                     echo "The job was triggered by user: ${username}"
 // 		    println "The job was triggered by user: $username"
 			
-		    def buildCauses = currentBuild.getBuildCauses()
-//                     if (buildCauses[0].getClass().getName() == 'hudson.model.Cause$UserIdCause') {
-                        def username = buildCauses[0].getUserId()
-                        println "The username is: ${username}"
-//                     } else {
-//                         println "Unable to get username"
-//                     }
+		    def username = env.BUILD_USER
+                    echo "The username who triggered the build is: ${username}"
                 }
             }
         }
