@@ -47,8 +47,13 @@ pipeline {
 //                     echo "The job was triggered by user: ${username}"
 // 		    println "The job was triggered by user: $username"
 			
-		    def username = env.BUILD_USER
-                    echo "The username who triggered the build is: ${username}"
+// 		    def username = env.BUILD_USER
+//                     echo "The username who triggered the build is: ${username}"
+			
+		    def lastCommit = sh(script: 'git log -1', returnStdout: true).trim()
+                    def authorMatch = lastCommit =~ /Author: (.*) <.*>/
+                    def author = authorMatch ? authorMatch[0][1] : 'Unknown'
+                    echo "The last commit was authored by: ${author}"
                 }
             }
         }
