@@ -30,7 +30,7 @@ pipeline {
 // 		wrap([$class: 'BuildUser']) {
 //                     sh 'echo "${BUILD_USER}"'
 //                 }
-		sh 'echo User.current()'
+// 		sh 'echo User.current()'
 		    
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
@@ -44,7 +44,7 @@ pipeline {
 // 		    def userId = build.getCause(Cause.UserIdCause).getUserId()
 			
 		    def username = currentBuild.getBuildCauses()[0].getUserName()
-//                     echo "The job was triggered by user: ${username}"
+                    echo "The job was triggered by user: ${username}"
 		    println "The job was triggered by user: $username"
                 }
             }
