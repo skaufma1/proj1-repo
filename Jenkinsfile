@@ -24,17 +24,17 @@ pipeline {
                 }
             }
         }
-// 	stage('Make HTTP request') {
-//             steps {
+	stage('Make HTTP request') {
+            steps {
 		    
 // 		wrap([$class: 'BuildUser']) {
 //                     sh 'echo "${BUILD_USER}"'
 //                 }
 // 		sh 'echo User.current()'
 		    
-//                 script {
-//                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
-//                     println "Response: $response"
+                script {
+                    def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
+                    println "Response: $response"
 			
 // 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
 //                     println "Jenkins user: $jenkinsUser"
@@ -46,8 +46,8 @@ pipeline {
 // 		    def username = currentBuild.getBuildCauses()[0].getUserName()
 //                     echo "The job was triggered by user: ${username}"
 // 		    println "The job was triggered by user: $username"
-//                 }
-//             }
-//         }
+                }
+            }
+        }
     }
 }
