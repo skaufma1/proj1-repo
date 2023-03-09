@@ -20,12 +20,17 @@ pipeline {
 				   		    
                 script {
 		       sh 'sudo docker build -t proj1_flask_image .'
-		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
+// 		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
                 }
             }
         }
 	stage('Make HTTP request') {
             steps {
+		    
+		wrap([$class: 'BuildUser']) {
+                    sh 'echo "${BUILD_USER}"'
+                }
+		    
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
                     println "Response: $response"
@@ -33,9 +38,9 @@ pipeline {
 // 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
 //                     println "Jenkins user: $jenkinsUser"
 
-		    def job = Jenkins.getInstance().getItemByFullName(env.JOB_BASE_NAME, Job.class)
-		    def build = job.getBuildByNumber(env.BUILD_ID as int)
-		    def userId = build.getCause(Cause.UserIdCause).getUserId()
+// 		    def job = Jenkins.getInstance().getItemByFullName(env.JOB_BASE_NAME, Job.class)
+// 		    def build = job.getBuildByNumber(env.BUILD_ID as int)
+// 		    def userId = build.getCause(Cause.UserIdCause).getUserId()
                 }
             }
         }
