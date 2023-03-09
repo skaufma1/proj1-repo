@@ -27,7 +27,7 @@ pipeline {
 	stage('Make HTTP request') {
             steps {
                 script {
-                    def response = sh(returnStdout: true, script: 'curl -v http://44.200.235.249:5000')
+                    def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
                     println "Response: $response"
 			
 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
