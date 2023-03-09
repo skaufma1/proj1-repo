@@ -54,6 +54,9 @@ pipeline {
                     def authorMatch = lastCommit =~ /Author: (.*) <.*>/
                     def author = authorMatch ? authorMatch[0][1] : 'Unknown'
                     echo "The last commit was authored by: ${author}"
+			
+		    def currentDate = new Date()
+                    println "Current Date: ${currentDate}"
                 }
             }
         }
