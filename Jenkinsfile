@@ -73,11 +73,11 @@ pipeline {
 		echo 'Buidling CSV file'
 // 		writeFile(file:'/home/ubuntu/tests_results.csv', text: 'Hello, World!\n', append: true)
 // 		writeFile(file: '/home/ubuntu/tests_results.csv', text: 'Hello, World!\n')
-		echo 'Hello World!' >> tests_results.csv
+// 		echo 'Hello World!' >> tests_results.csv
 		
-		cat tests_results.csv
+// 		cat tests_results.csv
 		
-		echo "This text will also be appended" >> myfile.txt
+		echo "This text will also be appended" >> home/ubuntu/myfile.txt
             }
         }
     }
