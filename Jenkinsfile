@@ -79,7 +79,7 @@ pipeline {
 		    def fileName = "tests_results_${formattedTimestamp}.csv"
 		    echo 'File name: ${fileName}'
 			
-		    writeFile(file: $fileName, text: "Hello, World!\n Hello, World!\n", append: true)
+// 		    writeFile(file: $fileName, text: "Hello, World!\n Hello, World!\n", append: true)
 // 		    echo 'Hello, World!' >> tests_results3.csv
 			
 		    		}
