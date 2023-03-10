@@ -77,7 +77,7 @@ pipeline {
 		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
 		    def fileName = "tests_results_${formattedTimestamp}.csv"
-		    echo 'File name: $fileName'
+		    println "File name: ${fileName}"
 			
 // 		    writeFile(file: $fileName, text: "Hello, World!\n Hello, World!\n", append: true)
 // 		    echo 'Hello, World!' >> tests_results3.csv
