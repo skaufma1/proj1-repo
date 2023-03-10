@@ -49,8 +49,8 @@ pipeline {
 		    println "Response: $response"
 			
 			
-		    def currentDate = new Date()
-                    println "Current Date: ${currentDate}"
+// 		    def currentDate = new Date()
+//                     println "Current Date: ${currentDate}"
 			
 // 		    def myString = "Hello, world!"
 // 		    def mySubstring = "worldd"
