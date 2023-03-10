@@ -69,8 +69,9 @@ pipeline {
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
 	stage('Build the test results CSV file') {
+	    steps {
 		echo 'Buidling CSV file'
-	    
+            }
         }
     }
 	
