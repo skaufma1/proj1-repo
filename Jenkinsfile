@@ -72,7 +72,7 @@ pipeline {
 	    steps {
 		script {
 		    echo 'Buidling CSV file'
-		    writeFile(file:'/home/ubuntu/tests_results2.csv', text: 'Hello, World!\n', append: true)
+		    writeFile(file:'/home/ubuntu/tests_results2.csv', text: 'Hello, World!\n\n', append: true)
 		}
 // 		echo 'Buidling CSV file'
 // 		writeFile(file:'/home/ubuntu/tests_results.csv', text: 'Hello, World!\n', append: true)
