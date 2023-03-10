@@ -76,8 +76,9 @@ pipeline {
 		    def buildTimestamp = currentBuild.getTimeInMillis()
 		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
+		    def fileName = "tests_results_${formattedTimestamp}'.csv
 			
-		    writeFile(file:'/home/ubuntu/tests_results_$formattedTimestamp'.csv, text: "Hello, World!\n Hello, World!\n", append: true)
+		    writeFile(file: fileName, text: "Hello, World!\n Hello, World!\n", append: true)
 // 		    echo 'Hello, World!' >> tests_results3.csv
 			
 		    		}
