@@ -71,7 +71,7 @@ pipeline {
 	stage('Build the Test Results CSV File') {
 	    steps {
 		echo 'Buidling CSV file'
-		writeFile(file:'tests_results.csv', text: 'Hello, World!\n', append: true)
+		writeFile(file:'/home/ubuntu/tests_results.csv', text: 'Hello, World!\n', append: true)
 		
 		sh 'cat tests_results.csv'
             }
