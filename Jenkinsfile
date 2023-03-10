@@ -21,8 +21,6 @@ pipeline {
 	// ************************************************************
 	stage('Deploy Flask Container') {
             steps {
-                sh "echo ${params.Name}"
-				   		    
                 script {
 		       sh 'sudo docker build -t proj1_flask_image .'
 		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
@@ -71,6 +69,8 @@ pipeline {
 	
     post {
 	always {
+	    // During testing phase - auto removal of deployed image + container, supporting the next run
+            // ******************************************************************************************
 	    sh 'sudo docker stop Proj1_Flask_Container'	
 	    sh 'sudo docker rm Proj1_Flask_Container'
 	 
