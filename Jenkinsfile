@@ -35,13 +35,14 @@ pipeline {
 		
 		// Build Running User: information collection
 		// ******************************************
+		def buildUser
 		wrap([$class: 'BuildUser']) {
-// 			def buildUser = ${BUILD_USER}
+	            buildUser = "${BUILD_USER}"
 // 		    println "buildUser: $buildUser"
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		    
-		sh 'echo "2222222222222222   Build triggered by ${BUILD_USER}"'
+		echo "2222222222222222   Build triggered by ${buildUser}"
 		
                 script {
 		    // Flask web-service successful deployment: information collection
