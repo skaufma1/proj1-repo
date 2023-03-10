@@ -81,7 +81,7 @@ pipeline {
 		    println "File name: ${fileName}"
 // 			println "File text: ${fileText}"
 			
-// 		    writeFile(file: fileName, text: fileText, append: true)
+		    writeFile(file: fileName, text: fileText, append: true)
 // 		    echo 'Hello, World!' >> tests_results3.csv
 			
 		    		}
