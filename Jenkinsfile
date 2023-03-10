@@ -76,7 +76,9 @@ pipeline {
 		    def currentDate = new Date()
                     println "Current Date: ${currentDate}"
 			
-		    def myString = "Hello, world!"
+// 		    def myString = "Hello, world!"
+// 		    def mySubstring = "worldd"
+		    def myString = response
 		    def mySubstring = "worldd"
 
 		    if (myString.contains(mySubstring)) {
