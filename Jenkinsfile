@@ -1,7 +1,9 @@
 pipeline {
     agent {label "slave1"}
     stages {
-	stage('CheckoutSCM') {
+	// Checkout from GitHub. This triggers via webhook, using the Jenkisfile 
+	// *********************************************************************
+	stage('Checkout SCM') {
 	    steps {
 		 checkout([
 			 $class: 'GitSCM',
@@ -13,7 +15,10 @@ pipeline {
 			 ])		    
 	    }		
 	}
-
+      
+	// Deploying the docker image + container onto the Slave server
+	// Flask web-service is auto-launched at port 5000
+	// ************************************************************
 	stage('Deploy Flask Container') {
             steps {
                 sh "echo ${params.Name}"
@@ -24,54 +29,25 @@ pipeline {
                 }
             }
         }
+	    
+	// Testing the Flask web-service is successfully launched
+	// ******************************************************
 	stage('Make HTTP request') {
             steps {
-		    
-// 		wrap([$class: 'BuildUser']) {
-//                     sh 'echo "${BUILD_USER}"'
-//                 }
-// 		sh 'echo User.current()'
-		    
+		
+		// Collecting the build-run initiating user
+		// ****************************************
 		wrap([$class: 'BuildUser']) {
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
-		    
+		
+		def currentDate = new Date()
+                println "Current Date: ${currentDate}"
+		
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
 		    println "Response: $response"
 			
-// 		    sh 'if grep -q "200 OK" $response; then echo "200 OK"; fi'
-		    sh 'if sed -n \'/XXX/p\' $response; then echo "Test OK"; else echo "Failure"; fi'
-		    def analyzed_response = sh 'sed -n \'/200 OK/p\' $response'
-		    sh 'echo "Analyzed rsponse: $analyzed_response"'
-		    
-		    def substring = response.substring(0, 5)
-		    println "Substring: $substring"
-			
-// 		    def jenkinsUser = currentBuild.getBuildCauses()[0].getUserName()
-//                     println "Jenkins user: $jenkinsUser"
-
-// 		    def job = Jenkins.getInstance().getItemByFullName(env.JOB_BASE_NAME, Job.class)
-// 		    def build = job.getBuildByNumber(env.BUILD_ID as int)
-// 		    def userId = build.getCause(Cause.UserIdCause).getUserId()
-			
-// 		    def username = currentBuild.getBuildCauses()[0].getUserName()
-//                     echo "The job was triggered by user: ${username}"
-// 		    println "The job was triggered by user: $username"
-			
-// 		    def username = env.BUILD_USER
-//                     echo "The username who triggered the build is: ${username}"
-			
-		    def lastCommit = sh(script: 'git log -1', returnStdout: true).trim()
-                    def authorMatch = lastCommit =~ /Author: (.*) <.*>/
-                    def author = authorMatch ? authorMatch[0][1] : 'Unknown'
-                    echo "The last commit was authored by: ${author}"
-		
-// 		    node {
-//   			wrap([$class: 'BuildUser']) {
-//     			def user = env.BUILD_USER_ID
-//  			}
-// 		    }
 			
 		    def currentDate = new Date()
                     println "Current Date: ${currentDate}"
