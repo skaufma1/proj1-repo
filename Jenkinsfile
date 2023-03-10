@@ -36,7 +36,7 @@ pipeline {
 		// Build Running User: information collection
 		// ******************************************
 		wrap([$class: 'BuildUser']) {
-		    def buildUser = echo '${BUILD_USER}'
+		    def buildUser = sh 'echo "${BUILD_USER}"'
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		
