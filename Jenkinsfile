@@ -42,7 +42,7 @@ pipeline {
 			
 // 		    sh 'if grep -q "200 OK" $response; then echo "200 OK"; fi'
 		    sh 'if sed -n \'/XXX/p\' $response; then echo "Test OK"; else echo "Failure"; fi'
-		    def analyzed_response = sh 'sed -n \'/XXX/p\' $response'
+		    def analyzed_response = sh 'sed -n \'/200 OK/p\' $response'
 		    sh 'echo "Analyzed rsponse: $analyzed_response"'
 		    
 		    def substring = response.substring(0, 5)
