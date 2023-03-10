@@ -35,25 +35,19 @@ pipeline {
 	stage('Make HTTP request') {
             steps {
 		
-		// Collecting the build-run initiating user
-		// ****************************************
+		// Build Running User: information collection
+		// ******************************************
 		wrap([$class: 'BuildUser']) {
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		
-// 		def currentDate = new Date()
-//                 println "Current Date: ${currentDate}"
-		
                 script {
+		    // Flask web-service successful deployment: information collection
+		    // ***************************************************************
                     def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
 		    println "Response: $response"
-			
-			
-		    def currentDate = new Date()
-                    println "Current Date: ${currentDate}"
-			
-// 		    def myString = "Hello, world!"
-// 		    def mySubstring = "worldd"
+		    
+	            // Flask web-service success deployment: analysis of check response
 		    def myString = response
 		    def mySubstring = "Hello,"
 
@@ -65,6 +59,11 @@ pipeline {
 			test_status = "FAILURE"
 		    }
 		    echo "Test status: ${test_status}"
+			
+		    // Current Date: information collection
+		    // ************************************
+		    def currentDate = new Date()
+                    println "Current Date: ${currentDate}"
                 }
             }
         }
