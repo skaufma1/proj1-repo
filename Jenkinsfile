@@ -94,7 +94,7 @@ pipeline {
     post {
 	always {
 	    sh 'sudo docker stop Proj1_Flask_Container'	
-	    sh 'sudo rm Proj1_Flask_Container'
+	    sh 'sudo docker rm Proj1_Flask_Container'
 	 
 	    echo 'Container removed - READY for next run !!!'
 	}
