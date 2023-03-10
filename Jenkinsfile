@@ -36,6 +36,7 @@ pipeline {
 		// Build Running User: information collection
 		// ******************************************
 		wrap([$class: 'BuildUser']) {
+		    def buildUser = ${BUILD_USER}
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		
@@ -77,7 +78,7 @@ pipeline {
 		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
 		    def fileName = "/home/ubuntu/tests_results_${formattedTimestamp}.csv"
-		    def fileText = "Jenkins job built by: BUILD_USER, Test status: ${test_status}, Date & Time: ${formattedTimestamp}"
+		    def fileText = "Jenkins job built by: ${buildUser}, Test status: ${test_status}, Date & Time: ${formattedTimestamp}"
 		    println "File name: ${fileName}"
 // 			println "File text: ${fileText}"
 			
