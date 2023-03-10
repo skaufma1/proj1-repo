@@ -86,10 +86,11 @@ pipeline {
 			
                         sh 'echo "444444 Build triggered by ${BUILD_USER}"'
 		        def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
+			println "File text 1: ${fileText}"
                     }
 // 		    def fileText = 'Jenkins job built by: ${buildUser}, Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
 		    println "File name: ${fileName}"
-		    println "File text: ${fileText}"
+		    println "File text 2: ${fileText}"
 			
 		    writeFile(file: fileName, text: fileText, append: true)
 // 		    echo 'Hello, World!' >> tests_results3.csv
