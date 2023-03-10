@@ -85,7 +85,7 @@ pipeline {
 		    wrap([$class: 'BuildUser']) {
 			
                         sh 'echo "444444 Build triggered by ${BUILD_USER}"'
-		        def fileText = "Jenkins job built by: ${BUILD_USER}, Test status: ${test_status}, Date & Time: ${formattedTimestamp}"
+		        def fileText = "Jenkins job built by: '${BUILD_USER}', Test status: ${test_status}, Date & Time: ${formattedTimestamp}"
                     }
 // 		    def fileText = "Jenkins job built by: ${buildUser}, Test status: ${test_status}, Date & Time: ${formattedTimestamp}"
 		    println "File name: ${fileName}"
