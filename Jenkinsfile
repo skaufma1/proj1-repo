@@ -32,6 +32,10 @@ pipeline {
 //                 }
 // 		sh 'echo User.current()'
 		    
+		wrap([$class: 'BuildUser']) {
+                    sh 'echo "Build triggered by ${BUILD_USER}"'
+                }
+		    
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
 		    println "Response: $response"
@@ -61,11 +65,11 @@ pipeline {
                     def author = authorMatch ? authorMatch[0][1] : 'Unknown'
                     echo "The last commit was authored by: ${author}"
 		
-		    node {
-  			wrap([$class: 'BuildUser']) {
-    			def user = env.BUILD_USER_ID
- 			}
-		    }
+// 		    node {
+//   			wrap([$class: 'BuildUser']) {
+//     			def user = env.BUILD_USER_ID
+//  			}
+// 		    }
 			
 		    def currentDate = new Date()
                     println "Current Date: ${currentDate}"
