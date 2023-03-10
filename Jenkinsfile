@@ -76,7 +76,7 @@ pipeline {
 // 		    echo 'Hello, World!' >> tests_results3.csv
 			
 		    def buildTimestamp = currentBuild.getTimeInMillis()
-		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd HH:mm:ss')
+		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
 		}
 // 		echo 'Buidling CSV file'
