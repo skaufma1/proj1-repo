@@ -77,7 +77,7 @@ pipeline {
                     println "Current Date: ${currentDate}"
 			
 		    def myString = "Hello, world!"
-		    def mySubstring = "world"
+		    def mySubstring = "worldd"
 
 		    if (myString.contains(mySubstring)) {
     			echo "Substring found"
