@@ -79,7 +79,7 @@ pipeline {
 // 		    def myString = "Hello, world!"
 // 		    def mySubstring = "worldd"
 		    def myString = response
-		    def mySubstring = "200 OK"
+		    def mySubstring = "Hello,"
 
 		    if (myString.contains(mySubstring)) {
     			echo "Substring found"
