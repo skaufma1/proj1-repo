@@ -88,7 +88,7 @@ pipeline {
    		        echo "Substring not found"
 			def test_status = "Test ended with FAILURE"
 		    }
-		    echo "Test status: $test_status"
+		    echo "Test status: ${test_status}"
                 }
             }
         }
