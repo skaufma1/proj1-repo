@@ -76,6 +76,8 @@ pipeline {
 		echo 'Hello World!' >> tests_results.csv
 		
 		cat tests_results.csv
+		
+		sh 'echo "This text will also be appended" >> myfile.txt'
             }
         }
     }
