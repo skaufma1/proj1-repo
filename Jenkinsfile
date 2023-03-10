@@ -72,7 +72,8 @@ pipeline {
 	    steps {
 		echo 'Buidling CSV file'
 // 		writeFile(file:'/home/ubuntu/tests_results.csv', text: 'Hello, World!\n', append: true)
-		writeFile(file: '/home/ubuntu/tests_results.csv', text: 'Hello, World!\n')
+// 		writeFile(file: '/home/ubuntu/tests_results.csv', text: 'Hello, World!\n')
+		sh 'echo "Hello World!\n' > /home/ubuntu/tests_results.csv'
 		
 		sh 'cat tests_results.csv'
             }
