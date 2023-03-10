@@ -83,9 +83,12 @@ pipeline {
 
 		    if (myString.contains(mySubstring)) {
     			echo "Substring found"
+			def test_status = "200 OK. Successful Test"
 		    } else {
    		        echo "Substring not found"
+			def test_status = "Test ended with FAILURE"
 		    }
+		    echo "Test status: $test_status"
                 }
             }
         }
