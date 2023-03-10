@@ -77,7 +77,7 @@ pipeline {
 		
 // 		cat tests_results.csv
 		
-		sh (sudo echo "This text will also be appended" >> home/ubuntu/myfile.txt)
+		sudo echo "This text will also be appended" >> home/ubuntu/myfile.txt
             }
         }
     }
