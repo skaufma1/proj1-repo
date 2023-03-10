@@ -33,7 +33,7 @@ pipeline {
 // 		sh 'echo User.current()'
 		    
                 script {
-                    def response = sh(returnStdout: true, script: 'curl -v http://35.153.60.106:5000')
+                    def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
 		    println "Response: $response"
 			
 // 		    sh 'if grep -q "200 OK" $response; then echo "200 OK"; fi'
