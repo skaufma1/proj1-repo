@@ -41,16 +41,16 @@ pipeline {
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		
-		def currentDate = new Date()
-                println "Current Date: ${currentDate}"
+// 		def currentDate = new Date()
+//                 println "Current Date: ${currentDate}"
 		
                 script {
                     def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
 		    println "Response: $response"
 			
 			
-// 		    def currentDate = new Date()
-//                     println "Current Date: ${currentDate}"
+		    def currentDate = new Date()
+                    println "Current Date: ${currentDate}"
 			
 // 		    def myString = "Hello, world!"
 // 		    def mySubstring = "worldd"
