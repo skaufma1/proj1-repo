@@ -60,6 +60,10 @@ pipeline {
                     def authorMatch = lastCommit =~ /Author: (.*) <.*>/
                     def author = authorMatch ? authorMatch[0][1] : 'Unknown'
                     echo "The last commit was authored by: ${author}"
+		
+		    wrap([$class: 'BuildUser']) {
+    			def user = env.BUILD_USER_ID
+  		    }
 			
 		    def currentDate = new Date()
                     println "Current Date: ${currentDate}"
