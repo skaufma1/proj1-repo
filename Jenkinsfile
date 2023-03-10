@@ -30,7 +30,7 @@ pipeline {
 	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
-	stage('Make HTTP request') {
+	stage('Make HTTP Request') {
             steps {
 		
 		// Build Running User: information collection
@@ -68,7 +68,7 @@ pipeline {
 	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
-	stage('Build the test results CSV file') {
+	stage('Build the Test Results CSV File') {
 	    steps {
 		echo 'Buidling CSV file'
             }
