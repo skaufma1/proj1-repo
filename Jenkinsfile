@@ -64,12 +64,13 @@ pipeline {
                     println "Current Date: ${currentDate}"
                 }
             }
-		
+	}
+	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
 	stage('Build the test results CSV file') {
 		echo 'Buidling CSV file'
-	    }
+	    
         }
     }
 	
