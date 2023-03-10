@@ -75,6 +75,15 @@ pipeline {
 			
 		    def currentDate = new Date()
                     println "Current Date: ${currentDate}"
+			
+		    def myString = "Hello, world!"
+		    def mySubstring = "world"
+
+		    if (myString.contains(mySubstring)) {
+    			echo "Substring found"
+		    } else {
+   		        echo "Substring not found"
+		    }
                 }
             }
         }
