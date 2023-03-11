@@ -87,6 +87,10 @@ pipeline {
 	
     post {
 	always {
+	    // Crearting TAR out of the Docker image - for future deplyment to Production servers
+	    // **********************************************************************************
+	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image"
+		
 	    // During testing phase - auto removal of deployed image + container, supporting the next run
             // ******************************************************************************************
 	    sh 'sudo docker stop Proj1_Flask_Container'	
