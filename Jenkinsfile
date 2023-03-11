@@ -38,9 +38,13 @@ pipeline {
 		       sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
 	               sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
 		
-		       sh 'git add /home/ubuntu/proj1_flask_image.tar'
-		       sh 'git commit -m "Adding proj1_flask_image.tar file"'
-		       sh 'git push origin main'
+		       withCredentials([usernamePassword(credentialsId: 'github-creds', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
+                    	   sh 'git config --global user.email "shmuel.kaufmann1@gmail.com"'
+                           sh 'git config --global user.name "Shmuel Kaufmann"'
+                           sh 'git add /home/ubuntu/proj1_flask_image.tar'
+                           sh 'git commit -m "Flask image pushed from pipeline job"'
+                           sh 'git push https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/skaufma1/proj1_repo.git'
+                      }
                 }
             }
         }
