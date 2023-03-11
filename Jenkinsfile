@@ -91,7 +91,7 @@ pipeline {
 	    // **********************************************************************************
 	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
 	    sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
-// 	    sh 'git add /home/ubuntu/proj1_flask_image.tar'
+	    sh 'git add /home/ubuntu/proj1_flask_image.tar'
 		
 	    // During testing phase - auto removal of deployed image + container, supporting the next run
             // ******************************************************************************************
