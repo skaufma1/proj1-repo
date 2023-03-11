@@ -21,7 +21,7 @@ pipeline {
 	// Flask web-service is auto-launched at port 5000
 	// ************************************************************
 	stage('Deploy Flask Container') {
-            steps {
+            steps {		    
                 script {
 		       sh 'sudo docker build -t proj1_flask_image .'
 		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
@@ -31,26 +31,8 @@ pipeline {
 	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
-	stage('Make HTTP Request') {
-            steps {
-		
-		// Build Running User: information collection
-		// ******************************************	    
-		script {
-		    def buildUserFullName = ""
-		    wrap([$class: 'BuildUser']) {
-                        buildUserFullName = env.BUILD_USER
-			echo "111 The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
-// 		        println "buildUser: $buildUser"
-                        sh 'echo "Build triggered by ${BUILD_USER}"'
-		    }
-		println "222 The job was triggered by user: $buildUserFullName"
-                }
-		
-		
-// 		def buildUser = sh(returnStdout: true, script: "echo '${BUILD_USER}'").trim()
-// 		echo "2222222222222222   Build triggered by ${buildUser}"
-		
+	stage('Perform HTTP Request') {
+            steps {		
                 script {
 		    // Flask web-service successful deployment: information collection
 		    // ***************************************************************
@@ -69,54 +51,36 @@ pipeline {
 			test_status = "FAILURE"
 		    }
 		    echo "Test status: ${test_status}"
-			
-		    // Current Date: information collection
-		    // ************************************
-		    def currentDate = new Date()
-                    println "Current Date: ${currentDate}"
                 }
             }
 	}
 	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
-	stage('Build the Test Results CSV File') {
-	    steps {
-				    
-		script {
-		    echo 'Building CSV file'
-			
+	stage('Build the Test Result CSV File') {
+	    steps {				    
+		script {		
+		    // Current Date: information collection
+		    // ************************************
+		    //def currentDate = new Date()
+                    		    
+		    // Build Running User: information collection
+		    // ******************************************	    
+		    def buildUserFullName = ""
+		    wrap([$class: 'BuildUser']) {
+                        buildUserFullName = env.BUILD_USER
+		    }
+		    		    
+	            // Compiling the CSV file name & text
+		    // **********************************	 
 		    def buildTimestamp = currentBuild.getTimeInMillis()
 		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
 		    def fileName = "/home/ubuntu/proj1FlaskDeployment_test_result_${formattedTimestamp}.csv"
-		
-		    def buildUserFullName = ""
-		    wrap([$class: 'BuildUser']) {
-                        buildUserFullName = env.BUILD_USER
-			echo "333 The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
-// 		        println "buildUser: $buildUser"
-                        sh 'echo "Build triggered by ${BUILD_USER}"'
-		    }
-		    echo "444 The job was triggered by user: ${buildUserFullName}"
-		    
-// 		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: $formattedTimestamp'
 		    def fileText = sh(returnStdout: true, script: "echo 'Jenkins job built by: ${buildUserFullName}; Test status: ${test_status}; Date & Time: ${formattedTimestamp}\n\n'").trim()
-		    println "File name: ${fileName}"
-		    println "File text 2: ${fileText}"
-			
+		    			
 		    writeFile(file: fileName, text: fileText, append: true)
-// 		    echo 'Hello, World!' >> tests_results3.csv
-			
-		    		}
-// 		echo 'Buidling CSV file'
-// 		writeFile(file:'/home/ubuntu/tests_results.csv', text: 'Hello, World!\n', append: true)
-// 		writeFile(file: '/home/ubuntu/tests_results.csv', text: 'Hello, World!\n')
-// 		echo 'Hello World!' >> tests_results.csv
-		
-// 		cat tests_results.csv
-		
-// 		echo "This text will also be appended" >> /home/ubuntu/myfile.txt
+    		}		    
             }
         }
     }
