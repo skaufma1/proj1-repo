@@ -38,17 +38,26 @@ pipeline {
 		       sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
 	               sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
 		
-		       withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
-                    	   sh 'git config --global user.email "shmuel.kaufmann1@gmail.com"'
-                           sh 'git config --global user.name "Shmuel Kaufmann"'
-//                            sh "git clone https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/skaufma1/proj1-repo.git"
-//                		   sh "cp /home/ubuntu/proj1_flask_image.tar proj1-repo/"
-//                		   sh "cd proj1-repo"
-              		   sh "git add proj1_flask_image.tar"
-               		   sh "git commit -m 'Added files from Jenkins pipeline'"
-               		   sh "git push origin main"
-                      }
+// // 		       withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
+// //                     	   sh 'git config --global user.email "shmuel.kaufmann1@gmail.com"'
+// //                            sh 'git config --global user.name "Shmuel Kaufmann"'
+// // //                            sh "git clone https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/skaufma1/proj1-repo.git"
+// // //                		   sh "cp /home/ubuntu/proj1_flask_image.tar proj1-repo/"
+// // //                		   sh "cd proj1-repo"
+// //               		   sh "git add proj1_flask_image.tar"
+// //                		   sh "git commit -m 'Added files from Jenkins pipeline'"
+// //                		   sh "git push origin main"
+//                       }
                 }
+		
+		checkout([
+			$class: 'GitSCM',
+			branches: [[name: 'main']],
+			userRemoteConfigs: [[
+				url: 'git@github.com:skaufma1/proj1_4img_repo.git',
+				credentialsId: ''
+				]]
+			])
             }
         }
 	    
