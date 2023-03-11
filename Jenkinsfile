@@ -28,43 +28,7 @@ pipeline {
                 }
             }
         }
-	    
-	// Loading a TAR of the Docker image to GitHub, making
-	// it available for later deployments to Production servers
-	// ********************************************************
-	stage('Keep Image TAR file in GitHub') {
-            steps {		    
-                script {
-		       sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
-	               sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
-		
-// // 		       withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
-// //                     	   sh 'git config --global user.email "shmuel.kaufmann1@gmail.com"'
-// //                            sh 'git config --global user.name "Shmuel Kaufmann"'
-// // //                            sh "git clone https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com/skaufma1/proj1-repo.git"
-// // //                		   sh "cp /home/ubuntu/proj1_flask_image.tar proj1-repo/"
-// // //                		   sh "cd proj1-repo"
-// //               		   sh "git add proj1_flask_image.tar"
-// //                		   sh "git commit -m 'Added files from Jenkins pipeline'"
-// //                		   sh "git push origin main"
-//                       }
-                }
-		
-		checkout([
-			$class: 'GitSCM',
-			branches: [[name: 'main']],
-			userRemoteConfigs: [[
-				url: 'git@github.com:skaufma1/proj1_4img_repo.git',
-				credentialsId: ''
-				]]
-			])
-		sh 'git clone git@github.com:skaufma1/proj1_4img_repo.git'
-		sh 'git add proj1_flask_image.tar'
-		sh 'git commit -m "proj1_flask_image.tar added by Jenkins pipeline job"'
-		sh 'git push -u origin main'
-            }
-        }
-	    
+	    	    
 	// Testing the Flask web-service is successfully launched
 	// ******************************************************
 	stage('Perform HTTP Request') {
@@ -123,11 +87,7 @@ pipeline {
 	
     post {
 	always {
-	    // Crearting TAR out of the Docker image - for future deplyment to Production servers
-	    // **********************************************************************************
-// 	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
-// 	    sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
-		
+	    		
 	    // During testing phase - auto removal of deployed image + container, supporting the next run
             // ******************************************************************************************
 	    sh 'sudo docker stop Proj1_Flask_Container'	
