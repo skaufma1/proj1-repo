@@ -1,5 +1,6 @@
 pipeline {
     agent {label "slave1"}
+
     stages {
 	// Checkout from GitHub. This triggers via webhook, using the Jenkisfile 
 	// *********************************************************************
@@ -75,6 +76,8 @@ pipeline {
 	// ******************************************************
 	stage('Build the Test Results CSV File') {
 	    steps {
+		def jobBuiltByUser
+		    
 		script {
 		    echo 'Building CSV file'
 			
