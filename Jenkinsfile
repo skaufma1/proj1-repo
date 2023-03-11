@@ -40,11 +40,12 @@ pipeline {
 		    def buildUserFullName = ""
 		    wrap([$class: 'BuildUser']) {
                         buildUserFullName = env.BUILD_USER_FULLNAME
+			echo "111 The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
 // 		        println "buildUser: $buildUser"
                         sh 'echo "Build triggered by ${BUILD_USER}"'
 		    }
                 }
-		echo "The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
+		echo "222 The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
 		
 // 		def buildUser = sh(returnStdout: true, script: "echo '${BUILD_USER}'").trim()
 // 		echo "2222222222222222   Build triggered by ${buildUser}"
