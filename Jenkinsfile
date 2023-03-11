@@ -89,7 +89,8 @@ pipeline {
 // 		        def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
 // 			println "File text 1: ${fileText}"
 //                     }
-		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: $formattedTimestamp'
+// 		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: $formattedTimestamp'
+		    def fileText = sh(returnStdout: true, script: "echo 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'").trim()
 		    println "File name: ${fileName}"
 		    println "File text 2: ${fileText}"
 			
