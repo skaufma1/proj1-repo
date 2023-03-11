@@ -42,7 +42,7 @@ pipeline {
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		    
-		echo "2222222222222222   Build triggered by ${buildUser}"
+// 		echo "2222222222222222   Build triggered by ${buildUser}"
 		
                 script {
 		    // Flask web-service successful deployment: information collection
