@@ -38,7 +38,7 @@ pipeline {
 		       sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
 	               sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
 		
-		       withCredentials([usernamePassword(credentialsId: 'github-creds', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
+		       withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'GITHUB_PASSWORD', usernameVariable: 'GITHUB_USERNAME')]) {
                     	   sh 'git config --global user.email "shmuel.kaufmann1@gmail.com"'
                            sh 'git config --global user.name "Shmuel Kaufmann"'
                            sh 'git add /home/ubuntu/proj1_flask_image.tar'
