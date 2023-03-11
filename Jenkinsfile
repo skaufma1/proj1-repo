@@ -35,11 +35,9 @@ pipeline {
             steps {
 		
 		// Build Running User: information collection
-		// ******************************************
-		def buildUser = echo "Empty"
-		    
+		// ******************************************	    
 		wrap([$class: 'BuildUser']) {
-// 	            buildUser = "${BUILD_USER}"
+                    def buildUser = "${BUILD_USER}"
 // 		    println "buildUser: $buildUser"
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
