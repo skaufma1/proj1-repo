@@ -47,7 +47,7 @@ pipeline {
                 script {
 		    // Flask web-service successful deployment: information collection
 		    // ***************************************************************
-                    def response = sh(returnStdout: true, script: 'curl -v http://54.236.55.72:5000')
+                    def response = sh(returnStdout: true, script: 'curl -v http://44.203.249.212:5000')
 		    println "Response: $response"
 		    
 	            // Flask web-service success deployment: analysis of check response
@@ -83,13 +83,13 @@ pipeline {
 		    echo "Build timestamp: ${formattedTimestamp}"
 		    def fileName = "/home/ubuntu/tests_results_${formattedTimestamp}.csv"
 		
-		    wrap([$class: 'BuildUser']) {
+// 		    wrap([$class: 'BuildUser']) {
 			
-                        sh 'echo "444444 Build triggered by ${BUILD_USER}"'
-		        def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
-			println "File text 1: ${fileText}"
-                    }
-// 		    def fileText = 'Jenkins job built by: ${buildUser}, Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
+//                         sh 'echo "444444 Build triggered by ${BUILD_USER}"'
+// 		        def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
+// 			println "File text 1: ${fileText}"
+//                     }
+// 		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
 		    println "File name: ${fileName}"
 		    println "File text 2: ${fileText}"
 			
