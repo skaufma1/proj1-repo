@@ -81,7 +81,7 @@ pipeline {
 		    def buildTimestamp = currentBuild.getTimeInMillis()
 		    def formattedTimestamp = new Date(buildTimestamp).format('yyyy-MM-dd-HHmmss')
 		    echo "Build timestamp: ${formattedTimestamp}"
-		    def fileName = "/home/ubuntu/tests_results_${formattedTimestamp}.csv"
+		    def fileName = "/home/ubuntu/proj1FlaskDeployment_test_result_${formattedTimestamp}.csv"
 		
 // 		    wrap([$class: 'BuildUser']) {
 			
