@@ -58,6 +58,7 @@ pipeline {
 				credentialsId: ''
 				]]
 			])
+		sh 'git clone git@github.com:skaufma1/proj1_4img_repo.git'
 		sh 'git add proj1_flask_image.tar'
 		sh 'git commit -m "proj1_flask_image.tar added by Jenkins pipeline job"'
 		sh 'git push -u origin main'
