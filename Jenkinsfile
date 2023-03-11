@@ -42,7 +42,7 @@ pipeline {
                     sh 'echo "Build triggered by ${BUILD_USER}"'
                 }
 		
-// 		def buildUser = sh(returnStdout: true, script: "echo '${BUILD_USER}'").trim()
+		def buildUser = sh(returnStdout: true, script: "echo '${BUILD_USER}'").trim()
 // 		echo "2222222222222222   Build triggered by ${buildUser}"
 		
                 script {
