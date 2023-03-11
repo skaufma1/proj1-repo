@@ -20,11 +20,23 @@ pipeline {
 	// Deploying the docker image + container onto the Slave server
 	// Flask web-service is auto-launched at port 5000
 	// ************************************************************
-	stage('Deploy Flask Container') {
+	stage('Create Flask Image & Deploy Container') {
             steps {		    
                 script {
 		       sh 'sudo docker build -t proj1_flask_image .'
 		       sh "sudo docker run -d -p 5000:5000 --name Proj1_Flask_Container proj1_flask_image '${params.Name}'"
+                }
+            }
+        }
+	    
+	// Loading a TAR of the Docker image to GitHub, making
+	// it available for later deployments to Production servers
+	// ********************************************************
+	stage('Keep Image TAR file in GitHub') {
+            steps {		    
+                script {
+		       sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
+	               sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
                 }
             }
         }
@@ -89,8 +101,8 @@ pipeline {
 	always {
 	    // Crearting TAR out of the Docker image - for future deplyment to Production servers
 	    // **********************************************************************************
-	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
-	    sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
+// 	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
+// 	    sh 'sudo chmod 777 /home/ubuntu/proj1_flask_image.tar'
 		
 	    // During testing phase - auto removal of deployed image + container, supporting the next run
             // ******************************************************************************************
