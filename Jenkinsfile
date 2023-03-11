@@ -76,7 +76,7 @@ pipeline {
 	// ******************************************************
 	stage('Build the Test Results CSV File') {
 	    steps {
-		def jobBuiltByUser
+		echo "The job was started by user: ${env.BUILD_USER}"
 		    
 		script {
 		    echo 'Building CSV file'
