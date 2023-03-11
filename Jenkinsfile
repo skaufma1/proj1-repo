@@ -91,12 +91,15 @@ pipeline {
 		    echo "Build timestamp: ${formattedTimestamp}"
 		    def fileName = "/home/ubuntu/proj1FlaskDeployment_test_result_${formattedTimestamp}.csv"
 		
-// 		    wrap([$class: 'BuildUser']) {
-			
-//                         sh 'echo "444444 Build triggered by ${BUILD_USER}"'
-// 		        def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'
-// 			println "File text 1: ${fileText}"
-//                     }
+		    def buildUserFullName = ""
+		    wrap([$class: 'BuildUser']) {
+                        buildUserFullName = env.BUILD_USER
+			echo "333 The job was triggered by user: ${buildUserFullName} (${BUILD_USER_ID})"
+// 		        println "buildUser: $buildUser"
+                        sh 'echo "Build triggered by ${BUILD_USER}"'
+		    }
+		    echo "444 The job was triggered by user: ${buildUserFullName}"
+		    
 // 		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: $formattedTimestamp'
 		    def fileText = sh(returnStdout: true, script: "echo 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'").trim()
 		    println "File name: ${fileName}"
