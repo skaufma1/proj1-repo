@@ -101,7 +101,7 @@ pipeline {
 		    echo "444 The job was triggered by user: ${buildUserFullName}"
 		    
 // 		    def fileText = 'Jenkins job built by: , Test status: ${test_status}, Date & Time: $formattedTimestamp'
-		    def fileText = sh(returnStdout: true, script: "echo 'Jenkins job built by: , Test status: ${test_status}, Date & Time: ${formattedTimestamp}'").trim()
+		    def fileText = sh(returnStdout: true, script: "echo 'Jenkins job built by: ${buildUserFullName}; Test status: ${test_status}; Date & Time: ${formattedTimestamp}'").trim()
 		    println "File name: ${fileName}"
 		    println "File text 2: ${fileText}"
 			
