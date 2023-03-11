@@ -35,7 +35,7 @@ pipeline {
 		
 		// Build Running User: information collection
 		// ******************************************
-		def buildUser
+// 		def buildUser
 		wrap([$class: 'BuildUser']) {
 // 	            buildUser = "${BUILD_USER}"
 // 		    println "buildUser: $buildUser"
