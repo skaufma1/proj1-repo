@@ -4,7 +4,7 @@ pipeline {
     stages {
 	// Checkout from GitHub. This triggers via webhook, using the Jenkisfile 
 	// *********************************************************************
-	stage('CheckoutSCM') {
+	stage('Checkout SCM') {
 	    steps {
 		 checkout([
 			 $class: 'GitSCM',
@@ -89,7 +89,7 @@ pipeline {
 	always {
 	    // Crearting TAR out of the Docker image - for future deplyment to Production servers
 	    // **********************************************************************************
-	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image"
+	    sh 'sudo docker save -o /home/ubuntu/proj1_flask_image.tar proj1_flask_image'
 		
 	    // During testing phase - auto removal of deployed image + container, supporting the next run
             // ******************************************************************************************
