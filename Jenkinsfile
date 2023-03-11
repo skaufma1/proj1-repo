@@ -36,7 +36,8 @@ pipeline {
 		
 		// Build Running User: information collection
 		// ******************************************
-// 		def buildUser
+		def buildUser = echo "Empty"
+		    
 		wrap([$class: 'BuildUser']) {
 // 	            buildUser = "${BUILD_USER}"
 // 		    println "buildUser: $buildUser"
@@ -76,8 +77,7 @@ pipeline {
 	// ******************************************************
 	stage('Build the Test Results CSV File') {
 	    steps {
-		echo "The job was started by user: ${env.BUILD_USER}"
-		    
+				    
 		script {
 		    echo 'Building CSV file'
 			
