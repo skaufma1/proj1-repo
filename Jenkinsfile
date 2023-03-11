@@ -40,7 +40,7 @@ pipeline {
 		
 		       sh 'git add /home/ubuntu/proj1_flask_image.tar'
 		       sh 'git commit -m "Adding proj1_flask_image.tar file"'
-		       sh 'git push origin main"
+		       sh 'git push origin main'
                 }
             }
         }
