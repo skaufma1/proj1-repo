@@ -36,7 +36,7 @@ pipeline {
                 script {
 		    // Flask web-service successful deployment: information collection
 		    // ***************************************************************
-                    def response = sh(returnStdout: true, script: 'curl -v http://44.198.159.126:5000')
+                    def response = sh(returnStdout: true, script: 'curl -v http://3.237.193.182:5000')
 		    println "Response: $response"
 		    
 	            // Flask web-service success deployment: analysis of check response
