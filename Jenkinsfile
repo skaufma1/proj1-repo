@@ -4,7 +4,7 @@ pipeline {
     stages {
 	// Checkout from GitHub. This triggers via webhook, using the Jenkisfile 
 	// *********************************************************************
-	stage('Checkout SCM') {
+	stage('CheckoutSCM') {
 	    steps {
 		 checkout([
 			 $class: 'GitSCM',
