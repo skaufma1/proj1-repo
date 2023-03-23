@@ -55,9 +55,9 @@ pipeline {
             }
 	}
 	    
-	// Testing the Flask web-service is successfully launched
-	// ******************************************************
-	stage('Build the Test Result CSV File') {
+	// Test results CSV files creation + loading to AWS s3 & DynamoDB
+	// **************************************************************
+	stage('Build Test Result CSV File + Deploy to s3 & DynamoDB') {
 	    steps {	   
 		script {		
 		    // Build Running User: information collection
